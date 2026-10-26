@@ -1,0 +1,89 @@
+BFS — Breadth-First Search
+BFS visits vertices level by level using a queue.
+
+Algorithm:
+1. Start from the given vertex.
+2. Mark it as visited and insert it into the queue.
+3. Remove a vertex from the queue.
+4. Visit all its unvisited adjacent vertices and insert them into the queue.
+5. Repeat until the queue is empty.
+C program:
+#include <stdio.h>
+
+int a[10][10], visited[10], n;
+
+void BFS(int s) {
+    int q[10], front = 0, rear = 0;
+
+    visited[s] = 1;
+    q[rear++] = s;
+
+    while (front < rear) {
+        int v = q[front++];
+        printf("%d ", v);
+
+        for (int i = 0; i < n; i++) {
+            if (a[v][i] && !visited[i]) {
+                visited[i] = 1;
+                q[rear++] = i;
+            }
+        }
+    }
+}
+
+int main() {
+    int e, u, v, s;
+
+    scanf("%d%d", &n, &e);
+
+    for (int i = 0; i < e; i++) {
+        scanf("%d%d", &u, &v);
+        a[u][v] = a[v][u] = 1;
+    }
+
+    scanf("%d", &s);
+    BFS(s);
+
+    return 0;
+}
+
+DFS — Depth-First Search
+DFS explores one path as deeply as possible before backtracking.
+
+Algorithm:
+1. Start from the given vertex.
+2. Mark it as visited and print it.
+3. Visit an unvisited adjacent vertex recursively.
+4. Continue until no unvisited adjacent vertices remain.
+C program:
+#include <stdio.h>
+
+int a[10][10], visited[10], n;
+
+void DFS(int v) {
+    visited[v] = 1;
+    printf("%d ", v);
+
+    for (int i = 0; i < n; i++) {
+        if (a[v][i] && !visited[i])
+            DFS(i);
+    }
+}
+
+int main() {
+    int e, u, v, s;
+
+    scanf("%d%d", &n, &e);
+
+    for (int i = 0; i < e; i++) {
+        scanf("%d%d", &u, &v);
+        a[u][v] = a[v][u] = 1;
+    }
+
+    scanf("%d", &s);
+    DFS(s);
+
+    return 0;
+}
+
+Note: The exact BFS and DFS sequences for your handwritten graph depend on the starting vertex and the graph's adjacency relationships. The image does not show every edge clearly enough to determine a reliable sequence.
