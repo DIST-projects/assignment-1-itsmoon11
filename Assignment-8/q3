@@ -1,0 +1,39 @@
+The handwritten sheet contains two weighted graph diagrams under this question. Some vertex labels and edge weights are difficult to distinguish.
+Algorithm to write in your notebook
+1. List all edges and their weights.
+2. Sort the edges in ascending order.
+3. Select the smallest edge.
+4. Check whether adding the edge creates a cycle.
+5. If a cycle is formed, reject the edge.
+6. Otherwise, include the edge in the MST.
+7. Stop when V - 1 edges have been selected.
+Example
+Suppose the edges in a graph are:
+Edge	Weight
+A–B	1
+B–C	2
+A–C	3
+C–D	4
+B–D	5
+
+
+Sorted order:
+\[
+AB(1),BC(2),AC(3),CD(4),BD(5)
+\]
+Select AB(1).
+
+Select BC(2).
+
+Reject AC(3) because it creates a cycle.
+
+Select CD(4).
+
+Therefore,
+\[
+MST=\{AB,BC,CD\}
+\]
+\[
+\boxed{\text{Minimum cost}=1+2+4=7}
+\]
+Note: This is an illustrative example, not the numerical answer to your two handwritten graphs. Their exact MST costs require a clearer image of the edge weights.
