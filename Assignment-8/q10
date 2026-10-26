@@ -1,0 +1,136 @@
+Implement a hash table data structure with functions to initialize, create, insert, search, and delete elements using separate chaining.
+Concept
+Separate chaining resolves collisions by storing multiple elements in a linked list at each hash table index.
+
+The hash function is:
+\[
+h(k)=k\bmod SIZE
+\]
+C program
+#include <stdio.h>
+#include <stdlib.h>
+
+#define SIZE 10
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *table[SIZE];
+
+void initialize() {
+    for (int i = 0; i < SIZE; i++)
+        table[i] = NULL;
+}
+
+void insert(int key) {
+    int i = key % SIZE;
+
+    struct Node *n = malloc(sizeof(struct Node));
+    n->data = key;
+    n->next = table[i];
+    table[i] = n;
+}
+
+int search(int key) {
+    int i = key % SIZE;
+    struct Node *p = table[i];
+
+    while (p != NULL) {
+        if (p->data == key)
+            return 1;
+
+        p = p->next;
+    }
+
+    return 0;
+}
+
+void deleteKey(int key) {
+    int i = key % SIZE;
+    struct Node *p = table[i], *prev = NULL;
+
+    while (p != NULL) {
+        if (p->data == key) {
+            if (prev == NULL)
+                table[i] = p->next;
+            else
+                prev->next = p->next;
+
+            free(p);
+            printf("Deleted\n");
+            return;
+        }
+
+        prev = p;
+        p = p->next;
+    }
+
+    printf("Key not found\n");
+}
+
+void display() {
+    for (int i = 0; i < SIZE; i++) {
+        struct Node *p = table[i];
+
+        printf("%d: ", i);
+
+        while (p != NULL) {
+            printf("%d -> ", p->data);
+            p = p->next;
+        }
+
+        printf("NULL\n");
+    }
+}
+
+int main() {
+    initialize();
+
+    insert(15);
+    insert(25);
+    insert(35);
+
+    display();
+
+    printf("Search 25: %s\n",
+           search(25) ? "Found" : "Not Found");
+
+    deleteKey(25);
+
+    display();
+
+    return 0;
+}
+
+Output
+0: NULL
+1: NULL
+2: NULL
+3: NULL
+4: NULL
+5: 35 -> 25 -> 15 -> NULL
+6: NULL
+7: NULL
+8: NULL
+9: NULL
+Search 25: Found
+Deleted
+0: NULL
+1: NULL
+2: NULL
+3: NULL
+4: NULL
+5: 35 -> 15 -> NULL
+6: NULL
+7: NULL
+8: NULL
+9: NULL
+
+Explanation
+- initialize() initializes all hash table entries to NULL.
+- insert() inserts an element into the linked list at the calculated index.
+- search() checks whether the given key exists.
+- deleteKey() removes the specified key from the linked list.
+- display() prints all hash table entries.
