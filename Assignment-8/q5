@@ -1,0 +1,68 @@
+Topological sorting is a linear ordering of the vertices of a directed acyclic graph (DAG) in which every vertex appears before all vertices to which it has an outgoing edge.
+Algorithm — Kahn's Method
+1. Calculate the indegree of every vertex.
+2. Insert all vertices with indegree zero into a queue.
+3. Remove a vertex from the queue and print it.
+4. Decrease the indegree of its adjacent vertices.
+5. Insert any vertex whose indegree becomes zero into the queue.
+6. Repeat until the queue is empty.
+C program
+#include <stdio.h>
+
+int main() {
+    int a[10][10], indeg[10] = {0};
+    int q[10], n, front = 0, rear = 0;
+    int count = 0, u, v;
+
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &a[i][j]);
+
+            if (a[i][j])
+                indeg[j]++;
+        }
+
+    for (int i = 0; i < n; i++)
+        if (indeg[i] == 0)
+            q[rear++] = i;
+
+    while (front < rear) {
+        u = q[front++];
+        printf("%d ", u);
+        count++;
+
+        for (v = 0; v < n; v++) {
+            if (a[u][v]) {
+                indeg[v]--;
+
+                if (indeg[v] == 0)
+                    q[rear++] = v;
+            }
+        }
+    }
+
+    if (count != n)
+        printf("\nGraph contains a cycle");
+
+    return 0;
+}
+
+Example
+Suppose the directed edges are:
+\[
+A\rightarrow C,\quad B\rightarrow C,\quad
+C\rightarrow D
+\]
+A valid topological ordering is:
+\[
+\boxed{A,B,C,D}
+\]
+Another valid ordering is:
+\[
+\boxed{B,A,C,D}
+\]
+There can be multiple valid topological orderings.
+
+Note: The exact ordering for your handwritten DAGs cannot be established reliably from the current image because several arrow directions and vertex labels are unclear.
