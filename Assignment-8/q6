@@ -1,0 +1,66 @@
+Insert 76, 93, 40, 47, 10, 55 into a hash table of size 7 using linear probing.
+
+Given:
+\[
+h(k)=k\bmod 7
+\]
+Linear probing formula:
+\[
+h_i(k)=(h(k)+i)\bmod 7
+\]
+Step-by-step calculation
+1. Insert 76
+\[
+76\bmod7=6
+\]
+Place 76 at index 6.
+
+2. Insert 93
+\[
+93\bmod7=2
+\]
+Place 93 at index 2.
+
+3. Insert 40
+\[
+40\bmod7=5
+\]
+Place 40 at index 5.
+
+4. Insert 47
+\[
+47\bmod7=5
+\]
+Index 5 is occupied. Check index 6, which is also occupied. Check index 0, which is empty.
+
+Place 47 at index 0.
+
+5. Insert 10
+\[
+10\bmod7=3
+\]
+Place 10 at index 3.
+
+6. Insert 55
+\[
+55\bmod7=6
+\]
+Index 6 is occupied. Check index 0, which is occupied. Check index 1, which is empty.
+
+Place 55 at index 1.
+Final hash table
+Index	Value
+0	47
+1	55
+2	93
+3	10
+4	Empty
+5	40
+6	76
+
+
+Final answer:
+\[
+\boxed{[47,55,93,10,-,40,76]}
+\]
+Here, - represents an empty location.
