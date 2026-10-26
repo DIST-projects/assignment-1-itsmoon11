@@ -1,0 +1,56 @@
+Consider a hash table of size 7 with:
+\[
+h(k)=k\bmod7
+\]
+Collision resolution function:
+\[
+f(i)=i^2
+\]
+Insert the keys 22, 30, 50.
+
+The probing formula is:
+\[
+h_i(k)=(h(k)+i^2)\bmod7
+\]
+Step 1: Insert 22
+\[
+h(22)=22\bmod7=1
+\]
+Place 22 at index 1.
+Step 2: Insert 30
+\[
+h(30)=30\bmod7=2
+\]
+Place 30 at index 2.
+Step 3: Insert 50
+\[
+h(50)=50\bmod7=1
+\]
+Index 1 is occupied.
+
+For \(i=1\):
+\[
+h_1(50)=(1+1^2)\bmod7=2
+\]
+Index 2 is occupied.
+
+For \(i=2\):
+\[
+h_2(50)=(1+2^2)\bmod7=5
+\]
+Index 5 is empty. Place 50 at index 5.
+Final hash table
+Index	Value
+0	Empty
+1	22
+2	30
+3	Empty
+4	Empty
+5	50
+6	Empty
+
+
+Final answer:
+\[
+\boxed{[-,22,30,-,-,50,-]}
+\]
