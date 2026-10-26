@@ -1,0 +1,46 @@
+A Minimum Spanning Tree (MST) connects all vertices of a connected, weighted, undirected graph with the minimum possible total edge weight and no cycles.
+A. Prim's Algorithm
+Steps:
+1. Start from any vertex.
+2. Select the minimum-weight edge connecting a selected vertex to an unselected vertex.
+3. Add the new vertex to the tree.
+4. Repeat until all vertices are included.
+B. Kruskal's Algorithm
+Steps:
+1. Sort all edges in increasing order of weight.
+2. Select the smallest edge.
+3. Reject an edge if it creates a cycle.
+4. Continue until V - 1 edges are selected.
+Calculation from the handwritten graph
+The graph appears to contain five vertices, with these edge weights visible or reasonably identifiable:
+Edge	Weight
+A–B	5
+A–C	7
+B–C	5
+B–D	4
+B–E	3
+C–E	6
+D–E	2
+
+
+Assuming these are the correct edges and weights, Kruskal's algorithm proceeds as follows.
+Step	Edge	Weight	Decision
+1	D–E	2	Select
+2	B–E	3	Select
+3	B–D	4	Reject — forms a cycle
+4	A–B	5	Select
+5	B–C	5	Select
+
+
+The selected edges are:
+\[
+MST=\{DE,BE,AB,BC\}
+\]
+Total weight:
+\[
+W=2+3+5+5
+\]
+\[
+\boxed{W=15}
+\]
+Important: This answer is conditional on the reconstructed graph. Verify the edge labels against your original sheet
