@@ -1,0 +1,48 @@
+Prove that if quadratic probing is used and the hash table size is prime, then a new element can always be inserted if the table is at least half empty.
+Proof
+Let the size of the hash table be \(m\), where \(m\) is a prime number.
+
+In quadratic probing, the probe positions are given by:
+\[
+h_i(k)=(h(k)+i^2)\bmod m
+\]
+For the standard quadratic probing scheme, the offsets are:
+\[
+0^2,1^2,2^2,\ldots
+\]
+Consider the first:
+\[
+\frac{m+1}{2}
+\]
+probe offsets, corresponding to:
+\[
+i=0,1,2,\ldots,\frac{m-1}{2}
+\]
+These offsets produce distinct positions modulo \(m\).
+
+To show this, suppose two positions are equal:
+\[
+i^2\equiv j^2\pmod m
+\]
+Then:
+\[
+(i-j)(i+j)\equiv0\pmod m
+\]
+Since \(m\) is prime:
+\[
+i\equiv j\pmod m
+\quad\text{or}\quad
+i\equiv-j\pmod m
+\]
+For \(i,j\) in the given range, the second possibility cannot hold for distinct indices. Hence:
+\[
+i=j
+\]
+Therefore, the first \((m+1)/2\) probe positions are distinct.
+
+If the table is at least half empty, fewer than half its positions are occupied. Since quadratic probing examines more than half the table in these probes, at least one probe position must be empty.
+
+Hence, a new element can be inserted.
+\[
+\boxed{\text{Hence proved.}}
+\]
