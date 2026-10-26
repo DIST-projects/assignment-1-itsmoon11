@@ -1,0 +1,58 @@
+Insert 27, 43, 69, 72 into a hash table of size 7 using:
+\[
+h_1(k)=k\bmod7
+\]
+\[
+h_2(k)=1+(k\bmod5)
+\]
+The double hashing formula is:
+\[
+h_i(k)=(h_1(k)+i\times h_2(k))\bmod7
+\]
+Step 1: Insert 27
+\[
+h_1(27)=27\bmod7=6
+\]
+Place 27 at index 6.
+Step 2: Insert 43
+\[
+h_1(43)=43\bmod7=1
+\]
+Place 43 at index 1.
+Step 3: Insert 69
+\[
+h_1(69)=69\bmod7=6
+\]
+Index 6 is occupied.
+
+Calculate the second hash:
+\[
+h_2(69)=1+(69\bmod5)=5
+\]
+For \(i=1\):
+\[
+h_1(69)+1\times h_2(69)
+=(6+5)\bmod7=4
+\]
+Index 4 is empty. Place 69 at index 4.
+Step 4: Insert 72
+\[
+h_1(72)=72\bmod7=2
+\]
+Place 72 at index 2.
+Final hash table
+Index	Value
+0	Empty
+1	43
+2	72
+3	Empty
+4	69
+5	Empty
+6	27
+
+
+Final answer:
+\[
+\boxed{[-,43,72,-,69,-,27]}
+\]
+No collisions occur for 27, 43, and 72. The key 69 requires one additional probe.
